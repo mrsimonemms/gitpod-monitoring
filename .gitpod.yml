@@ -1,0 +1,6 @@
+tasks: []
+
+vscode:
+  extensions:
+    - donjayamanne.githistory
+    - EditorConfig.EditorConfig
