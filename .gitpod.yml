@@ -1,6 +1,20 @@
-tasks: []
+tasks:
+  - init: make deps
+
+image:
+  file: .gitpod.Dockerfile
+
+ports:
+  - port: 9500
+    onOpen: open-browser
+  - port: 9090
+    onOpen: open-browser
+  - port: 8800
+    onOpen: open-browser
 
 vscode:
   extensions:
     - donjayamanne.githistory
     - EditorConfig.EditorConfig
+    - ms-vscode.makefile-tools
+    - technosophos.vscode-helm
