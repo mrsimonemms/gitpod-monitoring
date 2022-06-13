@@ -1,0 +1,25 @@
+{{- range $key, $value := .Values.serviceMonitors }}
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ $value.name }}
+  namespace: {{ $.Release.Namespace }}
+  labels:
+    # This is defined by the Helm chart
+    release: {{ $.Release.Name | quote }}
+spec:
+  selector:
+    {{- if $value.createService | default true }}
+    matchLabels:
+      app.kubernetes.io/component: {{ $value.name }}
+      app.kubernetes.io/monitoring: {{ $value.name }}
+    {{- else }}
+    matchLabels: {{ required "Add matchLabels to serviceMonitor" $value.matchLabels | toYaml | nindent 6 }}
+    {{- end }}
+  endpoints: {{ $value.endpoints | toYaml | nindent 4 }}
+  jobLabel: app.kubernetes.io/component
+  namespaceSelector:
+    matchNames:
+      - {{ $value.namespace | default $.Release.Namespace | quote }}
+{{- end }}

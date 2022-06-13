@@ -1,0 +1,19 @@
+podMonitors: []
+
+serviceMonitors:
+  - name: ws-manager
+    services:
+      selector:
+        component: ws-manager
+      ports:
+        - name: metrics
+          port: 9500
+          targetPort: 9500
+          protocol: TCP
+    endpoints:
+      - port: metrics
+        interval: 30s
+        bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
+
+prometheus:
+  enabled: true

@@ -1,0 +1,22 @@
+apiVersion: v2
+name: gitpod-monitoring
+description: Monitoring for a Gitpod deployment
+type: application
+version: 1.0.0
+icon: https://www.gitpod.io/images/media-kit/logo-mark.png
+home: https://github.com/MrSimonEmms/gitpod-monitoring
+dependencies:
+  - name: kube-prometheus-stack
+    alias: prometheus
+    repository: https://prometheus-community.github.io/helm-charts
+    version: ^35.5.0
+    condition: prometheus.enabled
+maintainers:
+  - name: Simon Emms
+    email: simon@simonemms.com
+    url: https://simonemms.com
+keywords:
+  - gitpod
+  - monitoring
+  - prometheus
+  - grafana

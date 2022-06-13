@@ -1,0 +1,16 @@
+{{- $ := . }}
+{{- range $key, $value := .Values.podMonitors }}
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: {{ $value.name }}
+  namespace: {{ $.Release.Namespace }}
+  labels:
+    # This is defined by the Helm chart
+    release: {{ $.Release.Name | quote }}
+spec:
+  selector:
+    matchLabels: {{ $value.matchLabels | toYaml | nindent 6 }}
+  podMetricsEndpoints: {{ $value.endpoints | toYaml | nindent 4 }}
+{{- end }}

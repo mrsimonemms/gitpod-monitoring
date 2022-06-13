@@ -1,0 +1,17 @@
+# Required until https://github.com/gitpod-io/gitpod/issues/10628 completed
+{{- range $key, $value := .Values.serviceMonitors }}
+---
+{{- if $value.createService | default true }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: monitoring-{{ $value.name }}
+  namespace: {{ $.Release.Namespace }}
+  labels:
+    app.kubernetes.io/component: {{ $value.name }}
+    app.kubernetes.io/monitoring: {{ $value.name }}
+spec:
+  selector: {{ $value.services.selector | toYaml | nindent 4 }}
+  ports: {{ $value.services.ports | toYaml | nindent 4 }}
+{{- end }}
+{{- end }}

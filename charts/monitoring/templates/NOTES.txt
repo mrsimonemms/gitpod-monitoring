@@ -1,0 +1,3 @@
+Monitoring deployed to "{{ .Release.Namespace }}" namespace
+
+Prometheus endpoint: http://{{ .Release.Name }}-prometheus-prometheus.{{ .Release.Namespace }}.svc.cluster.local:9090
