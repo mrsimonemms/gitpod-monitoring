@@ -1,4 +1,17 @@
-podMonitors: []
+podMonitors:
+  - name: workspace
+    matchLabels:
+      component: workspace
+      workspaceType: regular
+    endpoints:
+      - port: supervisor
+        interval: 60s
+        scrapeTimeout: 5s
+        metricRelabelings:
+          - sourceLabels:
+              - '__name__'
+            regex: gitpod_(.*)
+            action: keep
 
 serviceMonitors:
   - name: ws-manager
