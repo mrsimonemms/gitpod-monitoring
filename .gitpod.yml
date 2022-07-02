@@ -11,6 +11,8 @@ ports:
     onOpen: open-browser
   - port: 8800
     onOpen: open-browser
+  - port: 3000
+    onOpen: open-browser
 
 vscode:
   extensions:
