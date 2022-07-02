@@ -22,7 +22,8 @@ install:
 .PHONY: install
 
 port-forward:
-	kubectl port-forward -n ${NAMESPACE} prometheus-monitoring-prometheus-prometheus-0 9090:9090
+	kubectl port-forward -n ${NAMESPACE} statefulsets/prometheus-monitoring-prometheus-prometheus 9090:9090 &
+		kubectl port-forward -n ${NAMESPACE} deployments/monitoring-grafana 3000:3000
 .PHONY: port-forward
 
 uninstall:
