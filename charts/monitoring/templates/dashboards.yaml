@@ -1,0 +1,13 @@
+{{- $ := . }}
+{{- range $path, $_ :=  .Files.Glob  "dashboards/*.json" }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-dashboard-{{ base $path }}
+  namespace: {{ $.Release.Namespace }}
+  labels:
+    {{ $.Values.prometheus.grafana.sidecar.dashboards.label }}: {{ $.Values.prometheus.grafana.sidecar.dashboards.labelValue | quote }}
+data:
+  {{ base $path }}: {{ $.Files.Get $path | toJson | nindent 4 }}
+{{- end }}

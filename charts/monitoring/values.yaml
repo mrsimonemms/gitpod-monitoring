@@ -30,3 +30,9 @@ serviceMonitors:
 
 prometheus:
   enabled: true
+  grafana:
+    adminPassword: password
+    defaultDashboardsEnabled: true
+    sidecar:
+      dashboards:
+        enabled: true
