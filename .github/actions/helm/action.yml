@@ -1,0 +1,11 @@
+name: Helm
+description: Provides the Helm binary
+inputs:
+  cmd:
+    description: Command to run in the image
+    required: true
+runs:
+  using: docker
+  image: Dockerfile
+  args:
+    - ${{ inputs.cmd }}
