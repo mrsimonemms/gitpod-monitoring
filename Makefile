@@ -1,5 +1,5 @@
-HELM_DIR = charts
-MONITORING_DIR = ${HELM_DIR}/monitoring
+HELM_DIR = chart
+MONITORING_DIR = ${HELM_DIR}/gitpod-monitoring
 NAMESPACE ?= monitoring
 GITPOD_NAMESPACE ?= gitpod
 
