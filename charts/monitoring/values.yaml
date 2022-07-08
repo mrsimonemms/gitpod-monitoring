@@ -1,3 +1,5 @@
+gitpodNamespace: null
+
 podMonitors:
   - name: workspace
     matchLabels:
