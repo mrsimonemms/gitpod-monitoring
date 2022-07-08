@@ -1,6 +1,7 @@
 HELM_DIR = charts
 MONITORING_DIR = ${HELM_DIR}/monitoring
-NAMESPACE ?= gitpod
+NAMESPACE ?= monitoring
+GITPOD_NAMESPACE ?= gitpod
 
 all: uninstall deps install
 
@@ -16,6 +17,7 @@ install:
 		--install \
 		--namespace="${NAMESPACE}" \
 		--reset-values \
+		--set gitpodNamespace="${GITPOD_NAMESPACE}" \
 		--wait \
 		monitoring \
 		${MONITORING_DIR}

@@ -13,4 +13,8 @@ spec:
   selector:
     matchLabels: {{ $value.matchLabels | toYaml | nindent 6 }}
   podMetricsEndpoints: {{ $value.endpoints | toYaml | nindent 4 }}
+  jobLabel: app.kubernetes.io/component
+  namespaceSelector:
+    matchNames:
+      - {{ $.Values.gitpodNamespace | default $.Release.Namespace | quote }}
 {{- end }}
