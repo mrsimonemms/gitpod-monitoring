@@ -2,7 +2,7 @@ apiVersion: v2
 name: gitpod-monitoring
 description: Monitoring for a Gitpod deployment
 type: application
-version: 1.0.0
+version: 0.0.0
 icon: https://www.gitpod.io/svg/media-kit/logo-mark.svg
 home: https://github.com/MrSimonEmms/gitpod-monitoring
 dependencies:
