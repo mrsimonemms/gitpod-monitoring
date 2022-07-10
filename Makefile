@@ -2,6 +2,7 @@ HELM_DIR = chart
 MONITORING_DIR = ${HELM_DIR}/gitpod-monitoring
 NAMESPACE ?= monitoring
 GITPOD_NAMESPACE ?= gitpod
+HELM_NAME ?= gitpod
 
 all: uninstall deps install
 
@@ -19,15 +20,15 @@ install:
 		--reset-values \
 		--set gitpodNamespace="${GITPOD_NAMESPACE}" \
 		--wait \
-		monitoring \
+		${HELM_NAME} \
 		${MONITORING_DIR}
 .PHONY: install
 
 port-forward:
-	kubectl port-forward -n ${NAMESPACE} statefulsets/prometheus-monitoring-prometheus-prometheus 9090:9090 &
-		kubectl port-forward -n ${NAMESPACE} deployments/monitoring-grafana 3000:3000
+	kubectl port-forward -n ${NAMESPACE} statefulsets/prometheus-${HELM_NAME}-prometheus-prometheus 9090:9090 &
+		kubectl port-forward -n ${NAMESPACE} deployments/${HELM_NAME}-grafana 3000:3000
 .PHONY: port-forward
 
 uninstall:
-	helm uninstall -n "${NAMESPACE}" monitoring || true
+	helm uninstall -n "${NAMESPACE}" ${HELM_NAME} || true
 .PHONY: uninstall
