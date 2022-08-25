@@ -17,6 +17,7 @@ podMonitors:
 
 serviceMonitors:
   - name: ws-manager
+    createService: true
     services:
       selector:
         component: ws-manager

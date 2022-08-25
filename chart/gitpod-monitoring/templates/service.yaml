@@ -1,7 +1,7 @@
 # Required until https://github.com/gitpod-io/gitpod/issues/10628 completed
 {{- range $key, $value := .Values.serviceMonitors }}
 ---
-{{- if $value.createService | default true }}
+{{- if $value.createService | default false }}
 apiVersion: v1
 kind: Service
 metadata:
